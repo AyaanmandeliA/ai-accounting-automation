@@ -1,0 +1,26 @@
+{
+  "Sample Brand A/Branch North": {
+    "class": "Brand A - Branch North",
+    "location": "Branch North"
+  },
+  "Sample Brand A/Branch East": {
+    "class": "Brand A - Branch East",
+    "location": "Branch East"
+  },
+  "Sample Brand A/Branch West": {
+    "class": "Brand A - Branch West",
+    "location": "Branch West"
+  },
+  "Sample Brand B/Branch North": {
+    "class": "Brand B - Branch North",
+    "location": "Branch North"
+  },
+  "Sample Brand B/Branch South": {
+    "class": "Brand B - Branch South",
+    "location": "Branch South"
+  },
+  "Head Office": {
+    "class": "Head Office",
+    "location": "Head Office"
+  }
+}

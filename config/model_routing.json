@@ -1,0 +1,35 @@
+{
+  "default_model": "claude-sonnet-4-6",
+  "routes": {
+    "simple_invoice": {
+      "model": "claude-sonnet-4-6",
+      "enabled": false,
+      "selection_rules": [
+        "single-page invoice",
+        "clear supplier, date, invoice number, total, and VAT",
+        "high OCR quality"
+      ],
+      "notes": "Placeholder for future cheap-model routing. Existing Claude model remains the default for now."
+    },
+    "complex_or_low_quality": {
+      "model": "claude-sonnet-4-6",
+      "enabled": false,
+      "selection_rules": [
+        "multi-page invoice or statement",
+        "low-quality scan or image",
+        "unclear allocation, payment support, or multiple transactions"
+      ],
+      "notes": "Placeholder for future premium-model routing."
+    },
+    "low_confidence_retry": {
+      "model": "claude-sonnet-4-6",
+      "enabled": false,
+      "selection_rules": [
+        "first-pass confidence below review threshold",
+        "missing required accounting fields",
+        "line items do not reconcile to total"
+      ],
+      "notes": "Placeholder for future premium retry route."
+    }
+  }
+}

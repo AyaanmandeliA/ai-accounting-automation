@@ -1,0 +1,131 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Extraction Provider Benchmark Manifest",
+  "type": "object",
+  "required": ["providers", "samples"],
+  "properties": {
+    "providers": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "samples": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "document_path", "expected", "mock_provider_outputs"],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "document_path": {
+            "type": "string"
+          },
+          "expected": {
+            "type": "object",
+            "required": [
+              "supplier_name",
+              "invoice_number",
+              "invoice_date",
+              "subtotal_amount",
+              "tax_amount",
+              "total_amount",
+              "supplier_trn",
+              "document_type",
+              "payment_confirmed",
+              "line_items"
+            ],
+            "properties": {
+              "supplier_name": {
+                "type": ["string", "null"]
+              },
+              "invoice_number": {
+                "type": ["string", "null"]
+              },
+              "invoice_date": {
+                "type": ["string", "null"]
+              },
+              "subtotal_amount": {
+                "type": ["number", "null"]
+              },
+              "tax_amount": {
+                "type": ["number", "null"]
+              },
+              "total_amount": {
+                "type": ["number", "null"]
+              },
+              "supplier_trn": {
+                "type": ["string", "null"]
+              },
+              "document_type": {
+                "type": ["string", "null"]
+              },
+              "payment_confirmed": {
+                "type": ["boolean", "null"]
+              },
+              "required_fields": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "line_items": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "description": {
+                      "type": "string"
+                    },
+                    "amount": {
+                      "type": ["number", "null"]
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "mock_provider_outputs": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "properties": {
+                "provider": {
+                  "type": "string"
+                },
+                "document_type": {
+                  "type": "string"
+                },
+                "raw_text": {
+                  "type": "string"
+                },
+                "fields": {
+                  "type": "object"
+                },
+                "line_items": {
+                  "type": "array"
+                },
+                "confidence_by_field": {
+                  "type": "object"
+                },
+                "page_count": {
+                  "type": "integer"
+                },
+                "raw_provider_response": {
+                  "type": "object"
+                },
+                "needs_llm_normalization": {
+                  "type": "boolean"
+                },
+                "errors": {
+                  "type": "array"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

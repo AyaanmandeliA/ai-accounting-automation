@@ -1,0 +1,359 @@
+{
+  "_comment": "SYNTHETIC supplier templates. Supplier names are made up.",
+  "templates": [
+    {
+      "id": "example_telecom_bill",
+      "enabled": true,
+      "supplier_name": "Example Telecom",
+      "supplier_name_patterns": [
+        "\\bexample telecom\\b",
+        "\\bexample telecommunications\\b"
+      ],
+      "invoice_number_regex": "(?:Invoice\\s*(?:No\\.?|Number)|Bill\\s*(?:No\\.?|Number))\\s*[:#-]?\\s*([A-Z0-9][A-Z0-9\\-/]{3,})",
+      "date_regex": "(?:Invoice\\s*Date|Bill\\s*Date|Date)\\s*[:#-]?\\s*(\\d{1,2}[/-]\\d{1,2}[/-]\\d{2,4}|\\d{4}[/-]\\d{1,2}[/-]\\d{1,2})",
+      "subtotal_regex": "(?:Subtotal|Sub\\s*Total|Amount\\s*Before\\s*VAT)\\s*[:#-]?\\s*(?:AED|د\\.إ)?\\s*([0-9,]+(?:\\.\\d{2})?)",
+      "vat_regex": "(?:VAT|Tax\\s*Amount)\\s*[:#-]?\\s*(?:AED|د\\.إ)?\\s*([0-9,]+(?:\\.\\d{2})?)",
+      "total_regex": "^\\s*(?:Total\\s*Amount|Grand\\s*Total|Amount\\s*Due|Total)\\s*[:#-]?\\s*(?:AED|د\\.إ)?\\s*([0-9,]+(?:\\.\\d{2})?)",
+      "trn_regex": "(?:TRN|Tax\\s*Registration\\s*Number)\\s*[:#-]?\\s*(\\d{15})",
+      "default_account": "Telephone & Internet",
+      "default_posting_type": "Bill",
+      "default_vat_treatment": "Claimable VAT",
+      "default_accounting_treatment": "supplier_bill_unpaid",
+      "default_payment_method": "unpaid",
+      "currency": "AED",
+      "confidence_rules": {
+        "minimum_confidence": 0.9,
+        "required_fields": [
+          "supplier_name",
+          "invoice_number",
+          "invoice_date",
+          "total_amount"
+        ],
+        "field_weights": {
+          "supplier_name": 0.2,
+          "invoice_number": 0.2,
+          "invoice_date": 0.2,
+          "total_amount": 0.2,
+          "tax_amount": 0.1,
+          "supplier_trn": 0.1
+        }
+      }
+    },
+    {
+      "id": "northwind_payment_slip_email_supporting",
+      "enabled": true,
+      "supplier_name": "Northwind",
+      "supplier_name_patterns": [
+        "\\bnorthwind\\b[\\s\\S]{0,200}\\bpayment slip\\b",
+        "\\bpayment slip\\b[\\s\\S]{0,200}\\bnorthwind\\b",
+        "billing@example\\.com"
+      ],
+      "default_document_type": "supporting_only",
+      "default_posting_type": "None",
+      "default_accounting_treatment": "supporting_only",
+      "default_payment_method": "unknown",
+      "default_notes": "NOT A BILL - Northwind payment-slip email/supporting correspondence only.",
+      "currency": "AED",
+      "confidence_rules": {
+        "minimum_confidence": 0.98,
+        "required_fields": [
+          "supplier_name",
+          "document_type"
+        ],
+        "field_weights": {
+          "supplier_name": 0.7,
+          "document_type": 0.3
+        }
+      }
+    },
+    {
+      "id": "example_chillers_chiller_remittance_table",
+      "enabled": true,
+      "supplier_name": "Example Chillers LLC",
+      "supplier_name_patterns": [
+        "\\bexample\\s+chillers\\b[\\s\\S]{0,120}\\bchillers\\b",
+        "\\bremittance advice\\b[\\s\\S]{0,240}\\bexample\\s+chillers\\b"
+      ],
+      "row_regex": "^\\s*(?P<invoice_number>EXC-\\d{4,})\\s+(?P<invoice_date>\\d{1,2}-\\d{1,2}-\\d{4})\\s+(?P<due_date>\\d{1,2}-\\d{1,2}-\\d{4})\\s+(?P<total_amount>[0-9,]+\\.\\d{2})\\s+(?P<balance_amount>[0-9,]+\\.\\d{2})\\s+(?P<payment_amount>[0-9,]+\\.\\d{2})\\s*$",
+      "row_fields": {
+        "invoice_number": "invoice_number",
+        "invoice_date": "invoice_date",
+        "due_date": "due_date",
+        "total_amount": "total_amount",
+        "balance_amount": "balance_amount",
+        "payment_amount": "payment_amount"
+      },
+      "payment_date_regex": "(?:Payment\\s+To[\\s\\S]{0,120}Date|Date)\\s*:\\s*(\\d{1,2}-\\d{1,2}-\\d{4}|\\d{1,2}\\s+[A-Za-z]{3}\\s+\\d{4})",
+      "default_account": "Utilities",
+      "default_account_type": "Expenses",
+      "default_quantity": 1,
+      "default_line_description": "Chiller charges bill {invoice_number}",
+      "default_notes": "Remittance table extracted locally; payment amount AED {payment_amount} against original bill AED {total_amount}.",
+      "default_document_type": "bill",
+      "default_posting_type": "Bill",
+      "default_accounting_treatment": "supplier_bill_paid",
+      "default_payment_method": "bank_transfer",
+      "default_payment_confirmed": true,
+      "default_payment_bank_account": "Example Bank - Brand A",
+      "currency": "AED",
+      "confidence_rules": {
+        "minimum_confidence": 0.95,
+        "required_fields": [
+          "supplier_name",
+          "invoice_number",
+          "invoice_date",
+          "due_date",
+          "total_amount",
+          "payment_amount"
+        ],
+        "field_weights": {
+          "supplier_name": 0.2,
+          "invoice_number": 0.2,
+          "invoice_date": 0.15,
+          "due_date": 0.1,
+          "total_amount": 0.2,
+          "payment_amount": 0.15
+        }
+      }
+    },
+    {
+      "id": "adatum_international_invoice",
+      "enabled": true,
+      "supplier_name": "Adatum International Co.LLC",
+      "supplier_name_patterns": [
+        "\\badatum\\s+international\\b"
+      ],
+      "invoice_number_regex": "\\b(ADT-\\d{4,})\\b",
+      "date_regex": "(?:Invoice\\s*Date|Date)\\s*[:#-]?\\s*(\\d{1,2}[/-]\\d{1,2}[/-]\\d{2,4}|\\d{4}[/-]\\d{1,2}[/-]\\d{1,2})",
+      "subtotal_regex": "(?:Subtotal|Sub\\s*Total|Amount\\s*Before\\s*VAT|Taxable\\s*Amount)\\s*[:#-]?\\s*(?:AED)?\\s*([0-9,]+(?:\\.\\d{2})?)",
+      "vat_regex": "(?:VAT|Tax\\s*Amount)\\s*[:#-]?\\s*(?:AED)?\\s*([0-9,]+(?:\\.\\d{2})?)",
+      "total_regex": "^\\s*(?:Grand\\s*Total|Total\\s*Amount|Net\\s*Amount|Total)\\s*[:#-]?\\s*(?:AED)?\\s*([0-9,]+(?:\\.\\d{2})?)",
+      "trn_regex": "(?:TRN|Tax\\s*Registration\\s*Number)\\s*[:#-]?\\s*(\\d{15})",
+      "default_account": "Salon Consumables",
+      "default_account_type": "Cost of Goods Sold",
+      "default_line_description": "Adatum invoice {invoice_number}",
+      "default_document_type": "invoice",
+      "default_posting_type": "Bill",
+      "default_accounting_treatment": "supplier_bill_unpaid",
+      "default_payment_method": "unpaid",
+      "currency": "AED",
+      "confidence_rules": {
+        "minimum_confidence": 0.92,
+        "required_fields": [
+          "supplier_name",
+          "invoice_number",
+          "invoice_date",
+          "total_amount"
+        ],
+        "field_weights": {
+          "supplier_name": 0.2,
+          "invoice_number": 0.2,
+          "invoice_date": 0.2,
+          "total_amount": 0.2,
+          "tax_amount": 0.1,
+          "supplier_trn": 0.1
+        }
+      }
+    },
+    {
+      "id": "fabrikam_trading_invoice",
+      "enabled": true,
+      "supplier_name": "Fabrikam Trading Co. L.L.C.",
+      "supplier_name_patterns": [
+        "\\bfabrikam\\s+trading\\b"
+      ],
+      "invoice_number_regex": "\\b(FAB-\\d{4,})\\b",
+      "date_regex": "(?:Invoice\\s*Date|Date)\\s*[:#-]?\\s*(\\d{1,2}[/-]\\d{1,2}[/-]\\d{2,4}|\\d{4}[/-]\\d{1,2}[/-]\\d{1,2})",
+      "subtotal_regex": "(?:Subtotal|Sub\\s*Total|Amount\\s*Before\\s*VAT|Taxable\\s*Amount)\\s*[:#-]?\\s*(?:AED)?\\s*([0-9,]+(?:\\.\\d{2})?)",
+      "vat_regex": "(?:VAT|Tax\\s*Amount)\\s*[:#-]?\\s*(?:AED)?\\s*([0-9,]+(?:\\.\\d{2})?)",
+      "total_regex": "^\\s*(?:Grand\\s*Total|Total\\s*Amount|Net\\s*Amount|Total)\\s*[:#-]?\\s*(?:AED)?\\s*([0-9,]+(?:\\.\\d{2})?)",
+      "trn_regex": "(?:TRN|Tax\\s*Registration\\s*Number)\\s*[:#-]?\\s*(\\d{15})",
+      "default_account": "Salon Consumables",
+      "default_account_type": "Cost of Goods Sold",
+      "default_line_description": "Fabrikam invoice {invoice_number}",
+      "default_document_type": "invoice",
+      "default_posting_type": "Bill",
+      "default_accounting_treatment": "supplier_bill_unpaid",
+      "default_payment_method": "unpaid",
+      "currency": "AED",
+      "confidence_rules": {
+        "minimum_confidence": 0.92,
+        "required_fields": [
+          "supplier_name",
+          "invoice_number",
+          "invoice_date",
+          "total_amount"
+        ],
+        "field_weights": {
+          "supplier_name": 0.2,
+          "invoice_number": 0.2,
+          "invoice_date": 0.2,
+          "total_amount": 0.2,
+          "tax_amount": 0.1,
+          "supplier_trn": 0.1
+        }
+      }
+    },
+    {
+      "id": "litware_hair_invoice",
+      "enabled": true,
+      "supplier_name": "Litware General Trading LLC",
+      "supplier_name_patterns": [
+        "\\blitware\\b",
+        "\\blitware general\\b",
+        "\\bhair\\s+products\\b"
+      ],
+      "invoice_number_regex": "\\b(LIT-INV-\\d{4,})\\b",
+      "date_regex": "(?:Invoice\\s*Date|Date)\\s*[:#-]?\\s*(\\d{1,2}[/-]\\d{1,2}[/-]\\d{2,4}|\\d{4}[/-]\\d{1,2}[/-]\\d{1,2})",
+      "subtotal_regex": "(?:Subtotal|Sub\\s*Total|Amount\\s*Before\\s*VAT|Taxable\\s*Amount)\\s*[:#-]?\\s*(?:AED)?\\s*([0-9,]+(?:\\.\\d{2})?)",
+      "vat_regex": "(?:VAT|Tax\\s*Amount)\\s*[:#-]?\\s*(?:AED)?\\s*([0-9,]+(?:\\.\\d{2})?)",
+      "total_regex": "^\\s*(?:Grand\\s*Total|Total\\s*Amount|Net\\s*Amount|Total)\\s*[:#-]?\\s*(?:AED)?\\s*([0-9,]+(?:\\.\\d{2})?)",
+      "trn_regex": "(?:TRN|Tax\\s*Registration\\s*Number)\\s*[:#-]?\\s*(\\d{15})",
+      "default_account": "Salon Consumables",
+      "default_account_type": "Cost of Goods Sold",
+      "default_line_description": "Litware invoice {invoice_number}",
+      "default_document_type": "invoice",
+      "default_posting_type": "Bill",
+      "default_accounting_treatment": "supplier_bill_unpaid",
+      "default_payment_method": "unpaid",
+      "currency": "AED",
+      "confidence_rules": {
+        "minimum_confidence": 0.92,
+        "required_fields": [
+          "supplier_name",
+          "invoice_number",
+          "invoice_date",
+          "total_amount"
+        ],
+        "field_weights": {
+          "supplier_name": 0.2,
+          "invoice_number": 0.2,
+          "invoice_date": 0.2,
+          "total_amount": 0.2,
+          "tax_amount": 0.1,
+          "supplier_trn": 0.1
+        }
+      }
+    },
+    {
+      "id": "contoso_receipt",
+      "enabled": true,
+      "supplier_name": "Contoso",
+      "supplier_name_patterns": [
+        "\\bcontoso\\b"
+      ],
+      "invoice_number_regex": "(?:Invoice\\s*(?:No\\.?|Number)|Receipt\\s*(?:No\\.?|Number)|Tax\\s*Invoice)\\s*[:#-]?\\s*([0-9]{6,})",
+      "date_regex": "(?:Invoice\\s*Date|Receipt\\s*Date|Date)\\s*[:#-]?\\s*(\\d{1,2}[/-]\\d{1,2}[/-]\\d{2,4}|\\d{4}[/-]\\d{1,2}[/-]\\d{1,2})",
+      "subtotal_regex": "(?:Subtotal|Sub\\s*Total|Amount\\s*Before\\s*VAT|Taxable\\s*Amount)\\s*[:#-]?\\s*(?:AED)?\\s*([0-9,]+(?:\\.\\d{2})?)",
+      "vat_regex": "(?:VAT|Tax\\s*Amount)\\s*[:#-]?\\s*(?:AED)?\\s*([0-9,]+(?:\\.\\d{2})?)",
+      "total_regex": "^\\s*(?:Grand\\s*Total|Total\\s*Amount|Net\\s*Amount|Total)\\s*[:#-]?\\s*(?:AED)?\\s*([0-9,]+(?:\\.\\d{2})?)",
+      "trn_regex": "(?:TRN|Tax\\s*Registration\\s*Number)\\s*[:#-]?\\s*(\\d{15})",
+      "default_account": "Office Supplies",
+      "default_account_type": "Expenses",
+      "default_line_description": "Contoso receipt {invoice_number}",
+      "default_document_type": "receipt",
+      "default_posting_type": "Bill",
+      "default_accounting_treatment": "supplier_bill_unpaid",
+      "default_payment_method": "unpaid",
+      "currency": "AED",
+      "confidence_rules": {
+        "minimum_confidence": 0.92,
+        "required_fields": [
+          "supplier_name",
+          "invoice_number",
+          "invoice_date",
+          "total_amount"
+        ],
+        "field_weights": {
+          "supplier_name": 0.2,
+          "invoice_number": 0.2,
+          "invoice_date": 0.2,
+          "total_amount": 0.2,
+          "tax_amount": 0.1,
+          "supplier_trn": 0.1
+        }
+      }
+    },
+    {
+      "id": "example_hypermarket_receipt",
+      "enabled": true,
+      "supplier_name": "Example Hypermarket",
+      "supplier_name_patterns": [
+        "\\bexample\\s+hypermarket\\b",
+        "\\bexample\\s+mart\\b"
+      ],
+      "invoice_number_regex": "(?:Invoice\\s*(?:No\\.?|Number)|Receipt\\s*(?:No\\.?|Number)|Bill\\s*No\\.?)\\s*[:#-]?\\s*([A-Z0-9][A-Z0-9\\-/]{1,})",
+      "date_regex": "(?:Invoice\\s*Date|Receipt\\s*Date|Date)\\s*[:#-]?\\s*(\\d{1,2}[/-]\\d{1,2}[/-]\\d{2,4}|\\d{4}[/-]\\d{1,2}[/-]\\d{1,2})",
+      "subtotal_regex": "(?:Subtotal|Sub\\s*Total|Amount\\s*Before\\s*VAT|Taxable\\s*Amount)\\s*[:#-]?\\s*(?:AED)?\\s*([0-9,]+(?:\\.\\d{2})?)",
+      "vat_regex": "(?:VAT|Tax\\s*Amount)\\s*[:#-]?\\s*(?:AED)?\\s*([0-9,]+(?:\\.\\d{2})?)",
+      "total_regex": "^\\s*(?:Grand\\s*Total|Total\\s*Amount|Net\\s*Amount|Total)\\s*[:#-]?\\s*(?:AED)?\\s*([0-9,]+(?:\\.\\d{2})?)",
+      "trn_regex": "(?:TRN|Tax\\s*Registration\\s*Number)\\s*[:#-]?\\s*(\\d{15})",
+      "default_account": "Office Supplies",
+      "default_account_type": "Expenses",
+      "default_line_description": "Hypermarket receipt {invoice_number}",
+      "default_document_type": "receipt",
+      "default_posting_type": "Bill",
+      "default_accounting_treatment": "supplier_bill_unpaid",
+      "default_payment_method": "unpaid",
+      "currency": "AED",
+      "confidence_rules": {
+        "minimum_confidence": 0.92,
+        "required_fields": [
+          "supplier_name",
+          "invoice_number",
+          "invoice_date",
+          "total_amount"
+        ],
+        "field_weights": {
+          "supplier_name": 0.2,
+          "invoice_number": 0.2,
+          "invoice_date": 0.2,
+          "total_amount": 0.2,
+          "tax_amount": 0.1,
+          "supplier_trn": 0.1
+        }
+      }
+    },
+    {
+      "id": "example_fuel_fuel_receipt",
+      "enabled": true,
+      "supplier_name": "Examplefuel",
+      "supplier_name_patterns": [
+        "\\bexamplefuel\\b",
+        "\\bexample fuel\\b",
+        "\\bfuel\\s+receipt\\b"
+      ],
+      "invoice_number_regex": "(?:Invoice\\s*(?:No\\.?|Number)|Receipt\\s*(?:No\\.?|Number)|Bill\\s*No\\.?)\\s*[:#-]?\\s*([A-Z0-9][A-Z0-9\\-/]{2,})",
+      "date_regex": "(?:Invoice\\s*Date|Receipt\\s*Date|Date)\\s*[:#-]?\\s*(\\d{1,2}[/-]\\d{1,2}[/-]\\d{2,4}|\\d{4}[/-]\\d{1,2}[/-]\\d{1,2})",
+      "subtotal_regex": "(?:Subtotal|Sub\\s*Total|Amount\\s*Before\\s*VAT|Taxable\\s*Amount)\\s*[:#-]?\\s*(?:AED)?\\s*([0-9,]+(?:\\.\\d{2})?)",
+      "vat_regex": "(?:VAT|Tax\\s*Amount)\\s*[:#-]?\\s*(?:AED)?\\s*([0-9,]+(?:\\.\\d{2})?)",
+      "total_regex": "^\\s*(?:Grand\\s*Total|Total\\s*Amount|Net\\s*Amount|Total)\\s*[:#-]?\\s*(?:AED)?\\s*([0-9,]+(?:\\.\\d{2})?)",
+      "trn_regex": "(?:TRN|Tax\\s*Registration\\s*Number)\\s*[:#-]?\\s*(\\d{15})",
+      "default_account": "Fuel",
+      "default_account_type": "Expenses",
+      "default_line_description": "Fuel receipt {invoice_number}",
+      "default_document_type": "receipt",
+      "default_posting_type": "Bill",
+      "default_accounting_treatment": "supplier_bill_unpaid",
+      "default_payment_method": "unpaid",
+      "currency": "AED",
+      "confidence_rules": {
+        "minimum_confidence": 0.92,
+        "required_fields": [
+          "supplier_name",
+          "invoice_number",
+          "invoice_date",
+          "total_amount"
+        ],
+        "field_weights": {
+          "supplier_name": 0.2,
+          "invoice_number": 0.2,
+          "invoice_date": 0.2,
+          "total_amount": 0.2,
+          "tax_amount": 0.1,
+          "supplier_trn": 0.1
+        }
+      }
+    }
+  ]
+}

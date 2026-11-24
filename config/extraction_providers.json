@@ -1,0 +1,132 @@
+{
+  "default_strategy": "benchmark_first",
+  "enabled_providers": [
+    "mock"
+  ],
+  "primary_provider": null,
+  "fallback_provider": "claude",
+  "require_benchmark_before_primary_provider": true,
+  "target_claude_fallback_rate": 0.05,
+  "max_claude_fallback_rate": 0.1,
+  "placeholder_provider_estimate_aed_per_doc": 0.25,
+  "providers": {
+    "azure": {
+      "display_name": "Azure Document Intelligence",
+      "enabled": false,
+      "requires_credentials": true,
+      "api_calls_enabled": false,
+      "estimated_cost_aed_per_page": 0.2
+    },
+    "google": {
+      "display_name": "Google Document AI Invoice Parser",
+      "enabled": true,
+      "requires_credentials": true,
+      "api_calls_enabled": true,
+      "estimated_cost_aed_per_page": 0.04,
+      "project_id": null,
+      "project_number": null,
+      "location": "us",
+      "processor_id": null,
+      "bearer_token_env_var": "GOOGLE_DOCUMENT_AI_BEARER_TOKEN",
+      "credentials_path_env_var": "GOOGLE_APPLICATION_CREDENTIALS",
+      "credentials_path": null,
+      "timeout_seconds": 60,
+      "confidence_threshold": 0.85,
+      "confidence_thresholds": {
+        "supplier": {
+          "blocker": 0.5,
+          "warning": 0.65,
+          "required": true
+        },
+        "invoice_number": {
+          "blocker": 0.0,
+          "warning": 0.45,
+          "required": false
+        },
+        "invoice_date": {
+          "blocker": 0.25,
+          "warning": 0.6,
+          "required": true
+        },
+        "total": {
+          "blocker": 0.55,
+          "warning": 0.7,
+          "required": true
+        },
+        "vat": {
+          "blocker": 0.0,
+          "warning": 0.5,
+          "required": false
+        },
+        "line_items": {
+          "blocker": 0.0,
+          "warning": 0.5,
+          "required": false
+        },
+        "payment_status": {
+          "blocker": 0.0,
+          "warning": 0.5,
+          "required": false
+        },
+        "document_type": {
+          "blocker": 0.0,
+          "warning": 0.6,
+          "required": true
+        }
+      },
+      "confidence_weights": {
+        "supplier": 0.35,
+        "total": 0.3,
+        "vat": 0.15,
+        "invoice_date": 0.1,
+        "document_type": 0.1,
+        "invoice_number": 0.0,
+        "line_items": 0.0,
+        "payment_status": 0.0
+      },
+      "weighted_confidence_warning_threshold": 0.65,
+      "amount_reconciliation_warning_tolerance_aed": 0.1,
+      "amount_reconciliation_blocker_tolerance_aed": 5.0,
+      "amount_reconciliation_blocker_percent": 0.02,
+      "amount_reconciliation_tolerance_aed": 0.05,
+      "claude_fallback_on_missing_required_fields": true,
+      "claude_fallback_on_low_confidence": true,
+      "claude_fallback_on_amount_mismatch": true
+    },
+    "mistral": {
+      "display_name": "Mistral OCR / Document AI",
+      "enabled": false,
+      "requires_credentials": true,
+      "api_calls_enabled": false,
+      "estimated_cost_aed_per_page": 0.05
+    },
+    "gemini": {
+      "display_name": "Gemini Flash",
+      "enabled": false,
+      "requires_credentials": true,
+      "api_calls_enabled": false,
+      "estimated_cost_aed_per_page": 0.03
+    },
+    "aws": {
+      "display_name": "Amazon Textract",
+      "enabled": false,
+      "requires_credentials": true,
+      "api_calls_enabled": false,
+      "estimated_cost_aed_per_page": 0.06
+    },
+    "local": {
+      "display_name": "Local OCR / Text Extraction",
+      "enabled": false,
+      "requires_credentials": false,
+      "api_calls_enabled": false,
+      "estimated_cost_aed_per_page": 0.0
+    },
+    "mock": {
+      "display_name": "Mock Provider",
+      "enabled": true,
+      "requires_credentials": false,
+      "api_calls_enabled": false,
+      "estimated_cost_aed_per_page": 0.0
+    }
+  }
+}

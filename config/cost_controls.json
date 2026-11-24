@@ -1,0 +1,6 @@
+{
+  "monthly_ai_cost_limit_aed": 100,
+  "warn_at_percent": 70,
+  "block_at_percent": 100,
+  "extraction_run_cost_block_aed": 25
+}

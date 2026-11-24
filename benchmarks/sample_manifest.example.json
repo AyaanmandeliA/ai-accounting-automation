@@ -1,0 +1,255 @@
+{
+  "providers": ["azure", "google", "mistral", "gemini", "aws", "local"],
+  "samples": [
+    {
+      "id": "sample_invoice_001",
+      "document_path": "data/raw/example_supplier_invoice.pdf",
+      "expected": {
+        "supplier_name": "Example Supplier LLC",
+        "invoice_number": "INV-100",
+        "invoice_date": "2026-06-01",
+        "subtotal_amount": 100.0,
+        "tax_amount": 5.0,
+        "total_amount": 105.0,
+        "supplier_trn": "100000000000001",
+        "document_type": "invoice",
+        "payment_confirmed": false,
+        "required_fields": ["supplier_name", "invoice_number", "invoice_date", "total_amount"],
+        "line_items": [
+          {
+            "description": "Salon supplies",
+            "amount": 105.0
+          }
+        ]
+      },
+      "mock_provider_outputs": {
+        "azure": {
+          "document_type": "invoice",
+          "raw_text": "Example Supplier LLC INV-100 105.00",
+          "fields": {
+            "supplier_name": "Example Supplier LLC",
+            "invoice_number": "INV-100",
+            "invoice_date": "2026-06-01",
+            "subtotal_amount": 100.0,
+            "tax_amount": 5.0,
+            "total_amount": 105.0,
+            "supplier_trn": "100000000000001",
+            "payment_confirmed": false
+          },
+          "line_items": [
+            {
+              "description": "Salon supplies",
+              "amount": 105.0
+            }
+          ],
+          "confidence_by_field": {
+            "supplier_name": 0.96,
+            "invoice_number": 0.97,
+            "invoice_date": 0.94,
+            "subtotal_amount": 0.95,
+            "tax_amount": 0.93,
+            "total_amount": 0.98,
+            "supplier_trn": 0.9
+          },
+          "page_count": 1,
+          "raw_provider_response": {
+            "cost_estimate": {
+              "estimated_cost_aed": 0.2
+            },
+            "speed_estimate_ms": 1800
+          },
+          "needs_llm_normalization": false,
+          "errors": []
+        },
+        "google": {
+          "document_type": "invoice",
+          "raw_text": "Example Supplier LLC INV-100 105.00",
+          "fields": {
+            "supplier_name": "Example Supplier LLC",
+            "invoice_number": "INV-100",
+            "invoice_date": "2026-06-01",
+            "subtotal_amount": 100.0,
+            "tax_amount": 5.0,
+            "total_amount": 105.0,
+            "supplier_trn": "100000000000001",
+            "payment_confirmed": false
+          },
+          "line_items": [
+            {
+              "description": "Salon supplies",
+              "amount": 105.0
+            }
+          ],
+          "confidence_by_field": {
+            "supplier_name": 0.95,
+            "invoice_number": 0.95,
+            "invoice_date": 0.92,
+            "subtotal_amount": 0.94,
+            "tax_amount": 0.93,
+            "total_amount": 0.97,
+            "supplier_trn": 0.91
+          },
+          "page_count": 1,
+          "raw_provider_response": {
+            "cost_estimate": {
+              "estimated_cost_aed": 0.04
+            },
+            "speed_estimate_ms": 2200
+          },
+          "needs_llm_normalization": false,
+          "errors": []
+        },
+        "mistral": {
+          "document_type": "invoice",
+          "raw_text": "Example Supplier LLC INV-100 105.00",
+          "fields": {
+            "supplier_name": "Example Supplier LLC",
+            "invoice_number": "INV-100",
+            "invoice_date": "2026-06-01",
+            "subtotal_amount": 100.0,
+            "tax_amount": 5.0,
+            "total_amount": 105.0,
+            "supplier_trn": "100000000000001",
+            "payment_confirmed": false
+          },
+          "line_items": [
+            {
+              "description": "Salon supplies",
+              "amount": 105.0
+            }
+          ],
+          "confidence_by_field": {
+            "supplier_name": 0.9,
+            "invoice_number": 0.91,
+            "invoice_date": 0.88,
+            "subtotal_amount": 0.9,
+            "tax_amount": 0.89,
+            "total_amount": 0.92,
+            "supplier_trn": 0.84
+          },
+          "page_count": 1,
+          "raw_provider_response": {
+            "cost_estimate": {
+              "estimated_cost_aed": 0.05
+            },
+            "speed_estimate_ms": 2500
+          },
+          "needs_llm_normalization": true,
+          "errors": []
+        },
+        "gemini": {
+          "document_type": "invoice",
+          "raw_text": "Example Supplier LLC INV-100 105.00",
+          "fields": {
+            "supplier_name": "Example Supplier LLC",
+            "invoice_number": "INV-100",
+            "invoice_date": "2026-06-01",
+            "subtotal_amount": 100.0,
+            "tax_amount": 5.0,
+            "total_amount": 105.0,
+            "supplier_trn": "100000000000001",
+            "payment_confirmed": false
+          },
+          "line_items": [
+            {
+              "description": "Salon supplies",
+              "amount": 105.0
+            }
+          ],
+          "confidence_by_field": {
+            "supplier_name": 0.88,
+            "invoice_number": 0.89,
+            "invoice_date": 0.86,
+            "subtotal_amount": 0.88,
+            "tax_amount": 0.86,
+            "total_amount": 0.9,
+            "supplier_trn": 0.82
+          },
+          "page_count": 1,
+          "raw_provider_response": {
+            "cost_estimate": {
+              "estimated_cost_aed": 0.03
+            },
+            "speed_estimate_ms": 2100
+          },
+          "needs_llm_normalization": true,
+          "errors": []
+        },
+        "aws": {
+          "document_type": "invoice",
+          "raw_text": "Example Supplier LLC INV-100 105.00",
+          "fields": {
+            "supplier_name": "Example Supplier LLC",
+            "invoice_number": "INV-100",
+            "invoice_date": "2026-06-01",
+            "subtotal_amount": 100.0,
+            "tax_amount": 5.0,
+            "total_amount": 105.0,
+            "supplier_trn": "100000000000001",
+            "payment_confirmed": false
+          },
+          "line_items": [
+            {
+              "description": "Salon supplies",
+              "amount": 105.0
+            }
+          ],
+          "confidence_by_field": {
+            "supplier_name": 0.92,
+            "invoice_number": 0.93,
+            "invoice_date": 0.9,
+            "subtotal_amount": 0.91,
+            "tax_amount": 0.9,
+            "total_amount": 0.94,
+            "supplier_trn": 0.83
+          },
+          "page_count": 1,
+          "raw_provider_response": {
+            "cost_estimate": {
+              "estimated_cost_aed": 0.06
+            },
+            "speed_estimate_ms": 2600
+          },
+          "needs_llm_normalization": true,
+          "errors": []
+        },
+        "local": {
+          "document_type": "invoice",
+          "raw_text": "Example Supplier LLC INV-100 105.00",
+          "fields": {
+            "supplier_name": "Example Supplier LLC",
+            "invoice_number": "INV-100",
+            "invoice_date": "2026-06-01",
+            "subtotal_amount": 100.0,
+            "tax_amount": 5.0,
+            "total_amount": 105.0,
+            "payment_confirmed": false
+          },
+          "line_items": [
+            {
+              "description": "Salon supplies",
+              "amount": 105.0
+            }
+          ],
+          "confidence_by_field": {
+            "supplier_name": 0.86,
+            "invoice_number": 0.83,
+            "invoice_date": 0.82,
+            "subtotal_amount": 0.84,
+            "tax_amount": 0.8,
+            "total_amount": 0.86
+          },
+          "page_count": 1,
+          "raw_provider_response": {
+            "cost_estimate": {
+              "estimated_cost_aed": 0.0
+            },
+            "speed_estimate_ms": 900
+          },
+          "needs_llm_normalization": true,
+          "errors": []
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "_metadata": {
+    "note": "SYNTHETIC SAMPLE DATA. Names are made up; not real suppliers, brands or branches."
+  },
+  "suppliers": {
+    "Example Supplies LLC": {
+      "primary": "Salon Consumables",
+      "frequency": "3",
+      "primary_treatment": "supplier_bill_unpaid",
+      "treatment_frequency": "3",
+      "qbo_posting_type": "Bill",
+      "qbo_posting_frequency": "3",
+      "payment_method": "unpaid",
+      "payment_method_frequency": "3",
+      "transaction_type_frequency": "3",
+      "confidence": "medium",
+      "source_rows": "3"
+    },
+    "Sample Utilities Co": {
+      "primary": "Utilities",
+      "frequency": "3",
+      "primary_treatment": "supplier_bill_unpaid",
+      "treatment_frequency": "3",
+      "qbo_posting_type": "Bill",
+      "qbo_posting_frequency": "3",
+      "payment_method": "unpaid",
+      "payment_method_frequency": "3",
+      "transaction_type_frequency": "3",
+      "confidence": "medium",
+      "source_rows": "3"
+    }
+  },
+  "category_account_map": {
+    "Salon Consumables": {
+      "Salon Consumables": 3
+    },
+    "Utilities": {
+      "Utilities": 2
+    }
+  },
+  "transaction_type_rules": {
+    "Bill": {
+      "accounting_treatment": "supplier_bill_unpaid",
+      "qbo_posting_type": "Bill",
+      "payment_method": "unpaid"
+    },
+    "Expense": {
+      "accounting_treatment": "direct_expense_paid",
+      "qbo_posting_type": "Expense",
+      "payment_method": "unknown"
+    },
+    "Supplier Credit": {
+      "accounting_treatment": "supplier_credit",
+      "qbo_posting_type": "SupplierCredit",
+      "payment_method": "supplier_credit"
+    },
+    "Bill Payment (Cheque)": {
+      "accounting_treatment": "supplier_payment_only",
+      "qbo_posting_type": "BillPayment",
+      "payment_method": "bank_transfer"
+    }
+  }
+}

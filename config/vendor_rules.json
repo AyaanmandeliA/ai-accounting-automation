@@ -1,0 +1,18 @@
+{
+  "vendors": {
+    "Example Supplies LLC": {
+      "brand": "",
+      "allocation_type": "unknown",
+      "document_type": "Unknown",
+      "posting_action": "Needs Human Review",
+      "posting_type": "Needs Human Review",
+      "qbo_object": "None",
+      "qbo_posting_type": "None",
+      "vat_treatment": "Missing VAT",
+      "payment_status": "Unknown",
+      "payment_method": "Unknown",
+      "capitalisation_required": null,
+      "supplier_classification": "Unknown"
+    }
+  }
+}

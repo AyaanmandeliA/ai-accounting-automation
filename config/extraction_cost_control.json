@@ -1,0 +1,8 @@
+{
+  "prefer_text_extraction": true,
+  "min_text_chars": 500,
+  "min_quality_score": 0.65,
+  "send_media_if_text_low_quality": true,
+  "max_media_file_mb_without_confirmation": 2.0,
+  "max_total_run_cost_aed_without_confirmation": 25.0
+}

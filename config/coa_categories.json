@@ -1,0 +1,105 @@
+{
+  "consumables": [
+    "consumable",
+    "salon supplies",
+    "supplies",
+    "hair color",
+    "colour",
+    "color",
+    "product",
+    "inventory",
+    "cosmetic",
+    "materials"
+  ],
+  "utilities": [
+    "utility",
+    "utilities",
+    "electric",
+    "water",
+    "dewa",
+    "sewa",
+    "district cooling",
+    "chiller",
+    "internet",
+    "telephone",
+    "telecom"
+  ],
+  "rent": [
+    "rent",
+    "lease",
+    "landlord",
+    "service charge",
+    "common area",
+    "property rent"
+  ],
+  "payroll": [
+    "payroll",
+    "salary",
+    "salaries",
+    "wages",
+    "employee",
+    "commission",
+    "bonus"
+  ],
+  "maintenance": [
+    "maintenance",
+    "repair",
+    "repairs",
+    "cleaning",
+    "pest",
+    "ac",
+    "hvac",
+    "plumbing",
+    "electrical maintenance"
+  ],
+  "professional_fees": [
+    "professional",
+    "legal",
+    "accounting",
+    "audit",
+    "consulting",
+    "consultancy",
+    "government",
+    "license",
+    "licence",
+    "typing",
+    "pro"
+  ],
+  "marketing": [
+    "marketing",
+    "advertising",
+    "ads",
+    "instagram",
+    "facebook",
+    "google",
+    "printing",
+    "signage",
+    "promotion",
+    "promotional"
+  ],
+  "equipment": [
+    "equipment",
+    "furniture",
+    "fixture",
+    "fixtures",
+    "computer",
+    "hardware",
+    "machinery",
+    "tools"
+  ],
+  "other": [
+    "bank",
+    "charges",
+    "fee",
+    "fees",
+    "office",
+    "software",
+    "subscription",
+    "transport",
+    "travel",
+    "misc",
+    "general",
+    "vat",
+    "tax"
+  ]
+}

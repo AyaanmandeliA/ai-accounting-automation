@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CE Review Dashboard</title>
+    <link rel="stylesheet" href="/static/styles.css">
+  </head>
+  <body>
+    <header class="topbar">
+      <div>
+        <h1>CE Review Dashboard</h1>
+        <p>Local invoice review. No QuickBooks posting.</p>
+      </div>
+      <nav class="shortcuts" aria-label="Keyboard shortcuts">
+        <span>A Approve</span>
+        <span>L Learn</span>
+        <span>S Save</span>
+        <span>R Reject</span>
+        <span>D Duplicate</span>
+        <span>N Review</span>
+        <span>M Manual</span>
+        <span>Left/Right Move</span>
+      </nav>
+    </header>
+
+    <main class="shell">
+      <aside class="queue">
+        <div class="tabs" id="tabs"></div>
+        <div class="metrics" id="metrics"></div>
+        <div class="counts" id="counts"></div>
+        <div class="queue-list" id="queueList" aria-label="Review queue"></div>
+      </aside>
+
+      <section class="viewer">
+        <div class="viewer-head">
+          <div>
+            <strong id="fileName">No item selected</strong>
+            <small id="sourcePath"></small>
+          </div>
+          <div class="viewer-actions">
+            <button id="openFile" type="button">Open File</button>
+            <button id="openFolder" type="button">Open Folder</button>
+          </div>
+        </div>
+        <div class="document-frame" id="documentFrame">
+          <p>Select an item from the queue.</p>
+        </div>
+      </section>
+
+      <section class="review">
+        <div class="review-head">
+          <div>
+            <h2 id="reviewTitle">AI Result</h2>
+            <p id="reviewSubtitle">Extraction and accounting decision</p>
+          </div>
+          <span class="status" id="statusPill">pending</span>
+        </div>
+
+        <div class="warnings" id="warnings"></div>
+        <div class="field-confidence" id="fieldConfidence"></div>
+        <div class="missing-reasons" id="missingReasons"></div>
+        <div class="inference-sources" id="inferenceSources"></div>
+
+        <form id="editForm" autocomplete="off">
+          <div class="field-grid">
+            <label>Vendor <input name="vendor"></label>
+            <label>Invoice # <input name="invoice_number"></label>
+            <label>Date <input name="invoice_date" placeholder="YYYY-MM-DD"></label>
+            <label>Due Date <input name="due_date" placeholder="YYYY-MM-DD"></label>
+            <label>Total <input name="total_amount" inputmode="decimal"></label>
+            <label>VAT <input name="tax_amount" inputmode="decimal"></label>
+            <label>Currency <input name="currency"></label>
+            <label>Document Type <input name="document_type"></label>
+            <label>Posting Action <input name="posting_action"></label>
+            <label>QBO Object <input name="qbo_object"></label>
+            <label>Payment Status <input name="payment_status"></label>
+            <label>Payment Method <input name="payment_method"></label>
+            <label>Branch <input name="branch"></label>
+            <label>Business Unit <input name="business_unit"></label>
+            <label>Brand <input name="brand"></label>
+            <label>Account / Category <input name="account_name"></label>
+            <label>QBO Class <input name="qbo_class_name"></label>
+            <label>QBO Location <input name="qbo_location_name"></label>
+          </div>
+          <div class="feedback-grid">
+            <label>Issue Type
+              <select name="issue_type">
+                <option>OCR</option>
+                <option>VAT</option>
+                <option>Supplier</option>
+                <option>Branch</option>
+                <option>Account</option>
+                <option>Posting Action</option>
+                <option>Payment Method</option>
+                <option>Duplicate</option>
+                <option selected>Other</option>
+              </select>
+            </label>
+            <label>Correction <input name="correction" placeholder="Corrected value or short note"></label>
+          </div>
+          <label class="wide">Reason <textarea name="feedback_reason" rows="2"></textarea></label>
+          <label class="wide">Notes <textarea name="notes" rows="2"></textarea></label>
+          <label class="wide">Review Reason <textarea name="review_reason" rows="2"></textarea></label>
+        </form>
+
+        <section class="decision">
+          <h3>Decision Explanation</h3>
+          <p id="decisionExplanation">-</p>
+        </section>
+
+        <div class="actions">
+          <button id="prevBtn" type="button">Previous</button>
+          <button id="saveBtn" type="button">Save Edits</button>
+          <button id="approveBtn" type="button" class="primary">Approve</button>
+          <button id="learnBtn" type="button" class="primary">Approve & Learn</button>
+          <button id="rejectBtn" type="button">Reject</button>
+          <button id="duplicateBtn" type="button">Mark Duplicate</button>
+          <button id="needsReviewBtn" type="button">Needs Review</button>
+          <button id="manualBtn" type="button">Manual Allocation Required</button>
+          <button id="nextBtn" type="button">Next</button>
+        </div>
+      </section>
+    </main>
+
+    <div class="toast" id="toast" role="status"></div>
+    <script src="/static/app.js"></script>
+  </body>
+</html>

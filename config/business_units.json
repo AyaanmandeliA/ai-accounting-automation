@@ -1,0 +1,74 @@
+{
+  "_comment": "SYNTHETIC SAMPLE DATA. Names are made up; not real suppliers, brands or branches.",
+  "brands": {
+    "Sample Brand A": {
+      "aliases": [
+        "sample brand a",
+        "brand a"
+      ],
+      "branches": {
+        "Branch North": [
+          "branch north",
+          "north"
+        ],
+        "Branch East": [
+          "branch east",
+          "east"
+        ],
+        "Branch West": [
+          "branch west",
+          "west"
+        ]
+      }
+    },
+    "Sample Brand B": {
+      "aliases": [
+        "sample brand b",
+        "brand b"
+      ],
+      "branches": {
+        "Branch North": [
+          "branch north",
+          "north"
+        ],
+        "Branch South": [
+          "branch south",
+          "south"
+        ]
+      }
+    },
+    "Head Office": {
+      "aliases": [
+        "head office"
+      ],
+      "branches": {}
+    },
+    "Shared": {
+      "aliases": [
+        "shared"
+      ],
+      "branches": {}
+    }
+  },
+  "folders": {
+    "bills": [
+      "bills",
+      "bill",
+      "invoices",
+      "invoice"
+    ],
+    "processed": [
+      "processed"
+    ],
+    "posted": [
+      "posted"
+    ],
+    "needs_review": [
+      "needs review"
+    ],
+    "manual_allocation_required": [
+      "manual allocation required"
+    ]
+  },
+  "review_root": "data/review"
+}

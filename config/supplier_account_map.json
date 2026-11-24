@@ -1,0 +1,33 @@
+{
+  "_metadata": {
+    "note": "SYNTHETIC SAMPLE DATA. Names are made up; not real suppliers, brands or branches."
+  },
+  "suppliers": {
+    "Example Supplies LLC": {
+      "primary": "Salon Consumables",
+      "frequency": "3",
+      "primary_treatment": "supplier_bill_unpaid",
+      "treatment_frequency": "3",
+      "qbo_posting_type": "Bill",
+      "qbo_posting_frequency": "3",
+      "payment_method": "unpaid",
+      "payment_method_frequency": "3",
+      "transaction_type_frequency": "3",
+      "confidence": "medium",
+      "source_rows": "3"
+    },
+    "Sample Utilities Co": {
+      "primary": "Utilities",
+      "frequency": "3",
+      "primary_treatment": "supplier_bill_unpaid",
+      "treatment_frequency": "3",
+      "qbo_posting_type": "Bill",
+      "qbo_posting_frequency": "3",
+      "payment_method": "unpaid",
+      "payment_method_frequency": "3",
+      "transaction_type_frequency": "3",
+      "confidence": "medium",
+      "source_rows": "3"
+    }
+  }
+}

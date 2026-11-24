@@ -1,0 +1,36 @@
+# Secrets and credentials (never commit)
+.env
+*.env.local
+config/secrets.local/
+config/secrets.local/*
+config/credentials.json
+config/gmail_oauth.json
+config/gmail_token.json
+config/drive_token.json
+config/qbo_config.json
+config/qbo_tokens.json
+config/google_document_ai.json
+*service-account*.json
+*.pem
+*.key
+
+# Real documents, exports and run data
+data/
+logs/
+benchmarks/results/
+config/reference/
+config/suppliers.xls
+reference_accounts/
+*.xls
+*.xlsx
+*.pdf
+*.jpeg
+*.jpg
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.DS_Store

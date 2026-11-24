@@ -1,0 +1,34 @@
+{
+  "vat": {
+    "standard_rate": 0.05,
+    "rate_tolerance": 0.002
+  },
+  "approval_thresholds": {
+    "small": 1000,
+    "medium": 5000,
+    "large": 20000
+  },
+  "document_type_keywords": {
+    "quotation": ["quotation", "quote", "proposal", "estimate"],
+    "supplier_statement": ["statement of account", "supplier statement", "account statement"],
+    "remittance_advice": ["remittance advice", "payment advice", "remittance"],
+    "payment_proof": ["payment proof", "payment slip", "transfer receipt", "bank receipt", "paid receipt"],
+    "delivery_note": ["delivery note", "delivery order", "goods received"],
+    "credit_note": ["credit note", "tax credit note", "supplier credit"],
+    "debit_note": ["debit note", "tax debit note", "supplier debit"]
+  },
+  "capital_asset_keywords": {
+    "furniture": ["furniture", "chair", "sofa", "reception desk", "cabinet"],
+    "equipment": ["equipment", "salon chair", "wash basin", "dryer", "steamer"],
+    "fitout": ["fitout", "fit-out", "renovation", "interior works"],
+    "leasehold_improvements": ["leasehold improvement", "partition", "ceiling", "flooring", "civil works"],
+    "computers": ["computer", "laptop", "desktop", "printer", "pos terminal"],
+    "machinery": ["machinery", "machine", "generator", "compressor"]
+  },
+  "corporate_tax_tags": {
+    "related_party": ["related party", "sister company", "group company"],
+    "owner_director_expense": ["owner", "director", "shareholder"],
+    "non_deductible": ["fine", "penalty", "personal", "non deductible", "non-deductible"],
+    "potential_entertainment_expense": ["entertainment", "meal", "restaurant", "hospitality", "gift"]
+  }
+}
